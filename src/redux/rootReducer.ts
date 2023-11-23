@@ -1,10 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import formOneSlice from "./features/formone";
-import formTwoSlice from "./features/formTwo";
-import formThreeSlice from "./features/formThree";
+import primaryProjectDetailsSlice from "./features/primaryProjectDetails";
+import secondaryProjectDetailsSlice from "./features/secondaryProjectDetails";
+import contactInfoSlice from "./features/contactInfo";
 
 export const rootReducer = combineReducers({
-  formOne: formOneSlice,
-  formTwo: formTwoSlice,
-  formThree: formThreeSlice,
+  primaryProjectDetails: primaryProjectDetailsSlice,
+  secondaryProjectDetails: secondaryProjectDetailsSlice,
+  contactInfo: contactInfoSlice,
 });
