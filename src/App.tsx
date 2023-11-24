@@ -3,11 +3,13 @@ import SecondaryDetailsForm from "./components/SecondaryDetailsForm";
 import ContactInfoForm from "./components/ContactInfoForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectDetails from "./components/ProjectDetails";
+import FormWizard from "./components/FormWizard";
 
 export default function App() {
   return (
     <main className="flex min-h-screen flex-col items-center ">
       <Router>
+        <FormWizard />
         <Routes>
           <Route path="/" element={<PrimaryDetailsForm />} />
           <Route path="/secondaryform" element={<SecondaryDetailsForm />} />

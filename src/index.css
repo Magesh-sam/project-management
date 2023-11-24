@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active-form-page {
+  text-decoration: underline 2px solid rgba(59, 130, 246, 50);
+  text-underline-offset: 10px;
+}

@@ -27,30 +27,30 @@ function SecondaryDetailsForm() {
     <form
       onSubmit={handleSubmit(submitForm)}
       className="flex flex-col items-center gap-4 mt-5 max-w-md mx-auto"
+      noValidate
     >
-      <label className="w-full">
+      <label className="w-full ">
         <span className="block mb-2">Project Status</span>
         <select
-          className="w-full border-2 border-blue-500 p-3 rounded-md"
+          className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           {...register("projectStatus", { required: true })}
         >
-          <option>--Select--</option>
-          <option value={"ongoing"}>New</option>
+          <option value="new">New</option>
           <option value="ongoing">Ongoing</option>
           <option value="completed">Completed</option>
           <option value="cancelled">Cancelled</option>
         </select>
       </label>
-      <label className="w-full">
+      <label className="w-full ">
         <span className="block mb-2">Project Location</span>
         <input
-          className="w-full border-2 border-blue-500 p-3 rounded-md"
+          className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="text"
           placeholder="Country"
           {...register("projectLocation.country", { required: true })}
         />
         <input
-          className="w-full border-2 border-blue-500 p-3 rounded-md mt-2"
+          className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md mt-2"
           type="text"
           placeholder="City"
           {...register("projectLocation.city", { required: true })}
@@ -59,7 +59,7 @@ function SecondaryDetailsForm() {
       <label className="w-full">
         <span className="block mb-2">Start Date</span>
         <input
-          className="w-full border-2 border-blue-500 p-3 rounded-md"
+          className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="date"
           placeholder="Start Date"
           {...register("startDate", { required: true })}
@@ -68,7 +68,7 @@ function SecondaryDetailsForm() {
       <label className="w-full">
         <span className="block mb-2">End Date</span>
         <input
-          className="w-full border-2 border-blue-500 p-3 rounded-md"
+          className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="date"
           placeholder="End Date"
           {...register("endDate", { required: true })}
@@ -79,7 +79,7 @@ function SecondaryDetailsForm() {
           type="button"
           className="border-2 border-blue-500  p-3 rounded-md"
           onClick={() => {
-            navigate(-1);
+            navigate("/");
           }}
         >
           Previous

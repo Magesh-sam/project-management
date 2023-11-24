@@ -1,7 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { projectDetailsProps } from "../../lib/types";
 
-const initialState = {} as projectDetailsProps;
+const initialState = {
+  projectDetailsData: {
+    projectName: "",
+    projectDescription: "",
+    projectType: "",
+    projectSize: "",
+    client: "",
+    projectStatus: "new",
+    projectLocation: {
+      country: "",
+      city: "",
+    },
+    startDate: "",
+    endDate: "",
+    email: "",
+    alternativeEmail: "",
+    contactNo: "",
+    emergencyContactNo: "",
+  },
+};
 
 const projectDetailsSlice = createSlice({
   name: "projectDetails",
@@ -11,8 +30,8 @@ const projectDetailsSlice = createSlice({
       state,
       action: PayloadAction<projectDetailsProps>
     ) => {
-      state = {
-        ...state,
+      state.projectDetailsData = {
+        ...state.projectDetailsData,
         ...action.payload,
       };
     },

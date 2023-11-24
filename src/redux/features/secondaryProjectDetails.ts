@@ -3,7 +3,7 @@ import { secondaryProjectDetailsProps } from "../../lib/types";
 
 const initialState = {
   secondaryProjectDetails: {
-    projectStatus: "",
+    projectStatus: "new",
     projectLocation: {
       country: "",
       city: "",
