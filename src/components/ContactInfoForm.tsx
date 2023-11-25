@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { submitContactInfo } from "../redux/features/contactInfo";
@@ -28,7 +27,8 @@ function ContactInfoForm() {
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit, control } = contactForm;
+  const { register, handleSubmit, formState } = contactForm;
+  const { errors } = formState;
   const submitForm = (data: contactInfoProps) => {
     dispatch(submitContactInfo(data));
     const finalFormData: projectDetailsProps = {
@@ -46,6 +46,9 @@ function ContactInfoForm() {
       className="flex flex-col items-center gap-4 mt-5 max-w-md mx-auto"
       noValidate
     >
+      <h2 className="text-2xl self-start font-bold underline underline-offset-4  my-3 ">
+        Contact Information
+      </h2>
       <label className="w-full">
         <span className="block mb-2">Email</span>
         <input
@@ -53,7 +56,10 @@ function ContactInfoForm() {
           type="email"
           placeholder="Email"
           {...register("email", {
-            required: " email must be filled",
+            required: {
+              value: true,
+              message: "Please fill the primary email",
+            },
             pattern: {
               value:
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -61,6 +67,7 @@ function ContactInfoForm() {
             },
           })}
         />
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </label>
       <label className="w-full">
         <span className="block mb-2">Alternate Email</span>
@@ -69,31 +76,55 @@ function ContactInfoForm() {
           type="email"
           placeholder="Alternate Email"
           {...register("alternativeEmail", {
-            required: true,
+            required: {
+              value: true,
+              message: "Please fill the alternate email",
+            },
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: "invalid email address",
             },
           })}
         />
+        {errors.alternativeEmail && (
+          <p className="text-red-500">{errors.alternativeEmail.message}</p>
+        )}
       </label>
       <label className="w-full">
         <span className="block mb-2">Contact Number</span>
         <input
           className=" w-[300px] sm:w-[450px] md:w-[600px]  border-2 border-blue-500 p-3 rounded-md"
-          type="tel"
+          type="number"
           placeholder="Contact Number"
-          {...register("contactNo", { required: true })}
+          {...register("contactNo", {
+            valueAsNumber: true,
+            required: {
+              value: true,
+              message: "Please fill the contact number",
+            },
+          })}
         />
+        {errors.contactNo && (
+          <p className="text-red-500">{errors.contactNo.message}</p>
+        )}
       </label>
       <label className="w-full">
         <span className="block mb-2">Emergency Contact Number</span>
         <input
           className=" w-[300px] sm:w-[450px] md:w-[600px]  border-2 border-blue-500 p-3 rounded-md"
-          type="tel"
+          type="number"
           placeholder="Emergency Contact Number"
-          {...register("emergencyContactNo", { required: true })}
+          {...register("emergencyContactNo", {
+            valueAsNumber: true,
+            required: {
+              value: true,
+              message: "Please fill the emergency contact number",
+            },
+          })}
         />
+        {errors.emergencyContactNo && (
+          <p className="text-red-500">{errors.emergencyContactNo.message}</p>
+        )}
       </label>
       <div className="flex justify-center gap-4">
         <button
@@ -109,7 +140,6 @@ function ContactInfoForm() {
           Next
         </button>
       </div>
-      <DevTool control={control} />
     </form>
   );
 }

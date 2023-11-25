@@ -5,10 +5,10 @@ function FormWizard() {
   console.log(location.pathname);
   return (
     <div className="flex p-3 border-2 border-blue-500  w-full items-center justify-evenly ">
-      <Link to="/" className="flex gap-1 items-center group ">
+      <Link to="/primaryform" className="flex gap-1 items-center group ">
         <span
           className={` rounded-full flex justify-center items-center h-6 w-6 border-2 border-black group-hover:bg-blue-700 group-hover:text-white group-hover:border-none ${
-            location.pathname === "/"
+            location.pathname === "/primaryform"
               ? "bg-blue-700 text-white border-none"
               : ""
           }`}

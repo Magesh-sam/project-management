@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
@@ -15,7 +14,7 @@ function PrimaryDetailsForm() {
       ...primaryFormData,
     },
   });
-  const { register, handleSubmit, control, formState } = primaryForm;
+  const { register, handleSubmit,  formState } = primaryForm;
   const { errors } = formState;
   const navigate = useNavigate();
   const submitForm = (data: primaryProjectDetailsProps) => {
@@ -29,7 +28,7 @@ function PrimaryDetailsForm() {
       noValidate
     >
       <h2 className="text-2xl font-bold underline underline-offset-4  my-3 ">
-        Primary Project Details
+        Project - Primary Details
       </h2>
       <label>
         <span className="block mb-2 font-semibold">Project Name</span>
@@ -189,7 +188,6 @@ function PrimaryDetailsForm() {
       >
         Next
       </button>
-      <DevTool control={control} />
     </form>
   );
 }

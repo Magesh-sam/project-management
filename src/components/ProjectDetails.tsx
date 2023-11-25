@@ -7,6 +7,7 @@ import { resetContactInfo } from "../redux/features/contactInfo";
 import { resetPrimaryDetails } from "../redux/features/primaryProjectDetails";
 import { resetSecondaryDetails } from "../redux/features/secondaryProjectDetails";
 import { resetProjectDetails } from "../redux/features/projectDetails";
+import { submitProjectDetails } from "../redux/features/projectTable";
 export default function ProjectDetails() {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,6 +46,7 @@ export default function ProjectDetails() {
       );
       return;
     }
+    dispatch(submitProjectDetails(projectDetails));
     resetFormData();
     dispatch(resetProjectDetails());
 
@@ -69,80 +71,108 @@ export default function ProjectDetails() {
     return (
       <main className="flex h-screen flex-col items-center justify-center ">
         <h1>Empty Project Details</h1>
-        <p>Please provide all project details.</p>
-        <Link to="/" className="font-semibold underline underline-offset-4">
-          Click here to fill the form{" "}
+        <p className="text-lg">Please provide all project details.</p>
+        <Link
+          to="/primaryform"
+          className="font-semibold underline underline-offset-4"
+        >
+          Click here to fill the form ✍️
         </Link>
       </main>
     );
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center w-[80%]">
+    <main className="flex min-h-screen flex-col items-center  w-[80%]">
+      <h1 className="text-3xl font-bold my-5">Project Details</h1>
       <div className="flex flex-col gap-3 p-8 rounded-md border border-blue-500 w-[90%] ">
         <section className="flex flex-col gap-3 mb-3">
-          <h2 className="font-bold underline underline-offset-2">
-            Primary Details
-          </h2>
+          <div className="flex gap-3">
+            <h2 className="font-bold underline underline-offset-2 text-3xl">
+              Primary Details{" "}
+            </h2>
+            <Link
+              className="text-blue-700 ml-3 hover:underline underline-offset-4"
+              to="/"
+            >
+              Edit ✍️
+            </Link>
+          </div>
           <div>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Project Name:</span> {projectName}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Project Description:</span>{" "}
               {projectDescription}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Project Type:</span> {projectType}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Project Size:</span> {projectSize}
             </p>
           </div>
         </section>
         <section className="flex flex-col gap-3 mb-3">
-          <h2 className="font-bold underline underline-offset-2">
-            Secondary Details
-          </h2>
+          <div className="flex gap-3">
+            <h2 className="font-bold underline underline-offset-2 text-3xl">
+              Secondary Details
+            </h2>
+            <Link
+              to="/secondaryform"
+              className="text-blue-700 ml-3 hover:underline underline-offset-4"
+            >
+              <p className="text-lg">Edit ✍️</p>
+            </Link>
+          </div>
           <div>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Client:</span> {client}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Project Status:</span> {projectStatus}
             </p>
             <div>
-              <p>
+              <p className="text-lg">
                 <span className="font-bold">Country:</span>{" "}
                 {projectLocation.country}
               </p>
-              <p>
+              <p className="text-lg">
                 <span className="font-bold">City:</span> {projectLocation.city}
               </p>
             </div>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Start Date:</span> {startDate}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">End Date:</span> {endDate}
             </p>
           </div>
         </section>
         <section className="flex flex-col gap-3 mb-3">
-          <h2 className="font-bold underline underline-offset-2">
-            Contact Details
-          </h2>
+          <div className="flex gap-3">
+            <h2 className="font-bold underline underline-offset-2 text-3xl ">
+              Contact Details
+            </h2>
+            <Link
+              to="/contactform"
+              className="text-blue-700 ml-3 hover:underline underline-offset-4"
+            >
+              <p className="text-lg">Edit ✍️</p>
+            </Link>
+          </div>
           <div>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Email:</span> {email}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Alternative Email:</span>{" "}
               {alternativeEmail}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Contact No:</span> {contactNo}
             </p>
-            <p>
+            <p className="text-lg">
               <span className="font-bold">Emergency Contact No:</span>{" "}
               {emergencyContactNo}
             </p>

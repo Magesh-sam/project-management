@@ -5,8 +5,8 @@ const initialState = {
   secondaryProjectDetails: {
     projectStatus: "new",
     projectLocation: {
-      country: "",
-      city: "",
+      country: "Argentina",
+      city: "Buenos Aires",
     },
     startDate: "",
     endDate: "",
