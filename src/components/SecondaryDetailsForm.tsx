@@ -18,7 +18,8 @@ function SecondaryDetailsForm() {
     },
   });
 
-  const { register, handleSubmit, control } = secondaryForm;
+  const { register, handleSubmit, control, formState } = secondaryForm;
+  const { errors } = formState;
   const submitForm = (data: secondaryProjectDetailsProps) => {
     dispatch(submitSecondaryProjectDetails(data));
     navigate("/contactform");
@@ -33,7 +34,12 @@ function SecondaryDetailsForm() {
         <span className="block mb-2">Project Status</span>
         <select
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
-          {...register("projectStatus", { required: true })}
+          {...register("projectStatus", {
+            required: {
+              value: true,
+              message: "Please select the project status",
+            },
+          })}
         >
           <option value="new">New</option>
           <option value="ongoing">Ongoing</option>
@@ -41,20 +47,41 @@ function SecondaryDetailsForm() {
           <option value="cancelled">Cancelled</option>
         </select>
       </label>
+      {errors.projectStatus && (
+        <p className="text-red-500">{errors.projectStatus.message}</p>
+      )}
       <label className="w-full ">
         <span className="block mb-2">Project Location</span>
         <input
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="text"
           placeholder="Country"
-          {...register("projectLocation.country", { required: true })}
+          {...register("projectLocation.country", {
+            required: {
+              value: true,
+              message: "Please enter the country name",
+            },
+          })}
         />
+        {errors.projectLocation && (
+          <p className="text-red-500">
+            {errors.projectLocation.country?.message}
+          </p>
+        )}
         <input
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md mt-2"
           type="text"
           placeholder="City"
-          {...register("projectLocation.city", { required: true })}
+          {...register("projectLocation.city", {
+            required: {
+              value: true,
+              message: "Please enter the city name",
+            },
+          })}
         />
+        {errors.projectLocation && (
+          <p className="text-red-500">{errors.projectLocation.city?.message}</p>
+        )}
       </label>
       <label className="w-full">
         <span className="block mb-2">Start Date</span>
@@ -62,8 +89,16 @@ function SecondaryDetailsForm() {
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="date"
           placeholder="Start Date"
-          {...register("startDate", { required: true })}
+          {...register("startDate", {
+            required: {
+              value: true,
+              message: "Please select the start date",
+            },
+          })}
         />
+        {errors.startDate && (
+          <p className="text-red-500">{errors.startDate.message}</p>
+        )}
       </label>
       <label className="w-full">
         <span className="block mb-2">End Date</span>
@@ -71,8 +106,16 @@ function SecondaryDetailsForm() {
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           type="date"
           placeholder="End Date"
-          {...register("endDate", { required: true })}
+          {...register("endDate", {
+            required: {
+              value: true,
+              message: "Please select  the end date",
+            },
+          })}
         />
+        {errors.endDate && (
+          <p className="text-red-500">{errors.endDate.message}</p>
+        )}
       </label>
       <div className="flex justify-center gap-4">
         <button
