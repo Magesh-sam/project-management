@@ -1,22 +1,22 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { projectDetailsProps } from "../../lib/types";
-
+import { projectTableRowProps } from "../../lib/types";
+import { projectTableInitialData } from "../../lib/mock_data";
 const initialState = {
-  projects: [] as projectDetailsProps[],
+  projects: projectTableInitialData as projectTableRowProps[],
 };
 
 const projectDetailsSlice = createSlice({
   name: "projectDetails",
   initialState,
   reducers: {
-    submitProjectDetails: (
+    submitProjectTableDetails: (
       state,
-      action: PayloadAction<projectDetailsProps>
+      action: PayloadAction<projectTableRowProps>
     ) => {
       state.projects.push(action.payload);
     },
   },
 });
 
-export const { submitProjectDetails } = projectDetailsSlice.actions;
+export const { submitProjectTableDetails } = projectDetailsSlice.actions;
 export default projectDetailsSlice.reducer;

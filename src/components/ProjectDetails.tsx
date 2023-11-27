@@ -7,7 +7,8 @@ import { resetContactInfo } from "../redux/features/contactInfo";
 import { resetPrimaryDetails } from "../redux/features/primaryProjectDetails";
 import { resetSecondaryDetails } from "../redux/features/secondaryProjectDetails";
 import { resetProjectDetails } from "../redux/features/projectDetails";
-import { submitProjectDetails } from "../redux/features/projectTable";
+import { submitProjectTableDetails } from "../redux/features/projectTable";
+import { projectTableRowProps } from "../lib/types";
 export default function ProjectDetails() {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,12 +46,16 @@ export default function ProjectDetails() {
         "Please agree to the terms and conditions before submitting the form."
       );
       return;
+    } else {
+      const finalProjectDetails: projectTableRowProps = {
+        ...projectDetails,
+        id: Date.now(),
+      };
+      dispatch(submitProjectTableDetails(finalProjectDetails));
+      resetFormData();
+      dispatch(resetProjectDetails());
+      navigate("/");
     }
-    dispatch(submitProjectDetails(projectDetails));
-    resetFormData();
-    dispatch(resetProjectDetails());
-
-    navigate("/");
   };
   if (
     projectName === "" ||

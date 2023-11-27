@@ -14,7 +14,7 @@ function PrimaryDetailsForm() {
       ...primaryFormData,
     },
   });
-  const { register, handleSubmit,  formState } = primaryForm;
+  const { register, handleSubmit, formState } = primaryForm;
   const { errors } = formState;
   const navigate = useNavigate();
   const submitForm = (data: primaryProjectDetailsProps) => {

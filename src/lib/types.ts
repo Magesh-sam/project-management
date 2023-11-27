@@ -23,21 +23,11 @@ export type contactInfoProps = {
   emergencyContactNo: string;
 };
 
-export type projectDetailsProps = {
-  projectName: string;
-  projectDescription: string;
-  projectType: string;
-  projectSize: string;
-  client: string;
-  projectStatus: string;
-  projectLocation: {
-    country: string;
-    city: string;
-  };
-  startDate: string;
-  endDate: string;
-  email: string;
-  alternativeEmail: string;
-  contactNo: string;
-  emergencyContactNo: string;
-};
+export interface projectDetailsProps
+  extends primaryProjectDetailsProps,
+    secondaryProjectDetailsProps,
+    contactInfoProps {}
+
+export interface projectTableRowProps extends projectDetailsProps {
+  id: number;
+}

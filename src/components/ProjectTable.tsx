@@ -6,19 +6,20 @@ function ProjectTable() {
   const projectDetails = useSelector(
     (state: RootState) => state.projectTable.projects
   );
-  console.log(projectDetails);
+  const reversedProjectDetails = [...projectDetails].reverse();
   const navigate = useNavigate();
   return (
-    <main className="mt-5 w-screen overflow-scroll">
+    <main className="max-w-screen overflow-hidden">
       <button
-        className="bg-blue-500 text-white p-3 rounded-md ml-5 "
+        className="bg-blue-500 text-white p-3 rounded-md ml-8 w-[200px] fixed top-2 left-2 "
         onClick={() => navigate("/primaryform")}
       >
         Add new record
       </button>
-      <table className="border-collapse border-2 border-blue-500 m-5">
+      <table className=" block border-collapse border-2 border-blue-500  whitespace-nowrap mt-[120px] max-w-[95vw] overflow-scroll mb-8">
         <thead>
           <tr>
+            <th className="p-2 border border-gray-300">Id</th>
             <th className="p-2 border border-gray-300">Project Name</th>
             <th className="p-2 border border-gray-300">Project Description</th>
             <th className="p-2 border border-gray-300">Project Type</th>
@@ -35,9 +36,10 @@ function ProjectTable() {
           </tr>
         </thead>
         <tbody>
-          {projectDetails?.map((project, index) => {
+          {reversedProjectDetails.map((project, index) => {
             return (
-              <tr key={index}>
+              <tr key={project.id}>
+                <td className="p-2 border border-gray-300">{index + 1}</td>
                 <td className="p-2 border border-gray-300">
                   {project.projectName}
                 </td>

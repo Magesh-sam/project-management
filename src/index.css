@@ -6,3 +6,20 @@
   text-decoration: underline 2px solid rgba(59, 130, 246, 50);
   text-underline-offset: 10px;
 }
+
+thead {
+  @apply bg-blue-500 text-white;
+}
+
+.ag-theme-material {
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(59 130 246);
+  --ag-header-cell-hover-background-color: rgba(59 130 246, 80);
+  --ag-header-cell-hover-background-color: rgba(59 130 246, 80);
+}
+.ag-theme-material .ag-icon {
+  @apply text-white;
+}
+.ag-paging-page-summary-panel .ag-icon {
+  @apply text-black;
+}
