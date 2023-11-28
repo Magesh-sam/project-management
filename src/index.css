@@ -1,10 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 .active-form-page {
   text-decoration: underline 2px solid rgba(59, 130, 246, 50);
   text-underline-offset: 10px;
+  font-size: 16px;
 }
 
 thead {
@@ -13,7 +19,7 @@ thead {
 
 .ag-theme-material {
   --ag-header-foreground-color: white;
-  --ag-header-background-color: rgb(59 130 246);
+  --ag-header-background-color: rgb(70, 101, 150);
   --ag-header-cell-hover-background-color: rgba(59 130 246, 80);
   --ag-header-cell-hover-background-color: rgba(59 130 246, 80);
 }
@@ -22,4 +28,73 @@ thead {
 }
 .ag-paging-page-summary-panel .ag-icon {
   @apply text-black;
+}
+
+@keyframes loader_5191 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.square {
+  background: #ddd;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+#sq1 {
+  margin-top: -25px;
+  margin-left: -25px;
+  animation: loader_5191 675ms ease-in-out 0s infinite alternate;
+}
+
+#sq2 {
+  margin-top: -25px;
+  animation: loader_5191 675ms ease-in-out 75ms infinite alternate;
+}
+
+#sq3 {
+  margin-top: -25px;
+  margin-left: 15px;
+  animation: loader_5191 675ms ease-in-out 150ms infinite;
+}
+
+#sq4 {
+  margin-left: -25px;
+  animation: loader_5191 675ms ease-in-out 225ms infinite;
+}
+
+#sq5 {
+  animation: loader_5191 675ms ease-in-out 300ms infinite;
+}
+
+#sq6 {
+  margin-left: 15px;
+  animation: loader_5191 675ms ease-in-out 375ms infinite;
+}
+
+#sq7 {
+  margin-top: 15px;
+  margin-left: -25px;
+  animation: loader_5191 675ms ease-in-out 450ms infinite;
+}
+
+#sq8 {
+  margin-top: 15px;
+  animation: loader_5191 675ms ease-in-out 525ms infinite;
+}
+
+#sq9 {
+  margin-top: 15px;
+  margin-left: 15px;
+  animation: loader_5191 675ms ease-in-out 600ms infinite;
 }

@@ -1,91 +1,89 @@
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import { useSelector } from "react-redux";
+import ProjectGridTable from "../components/ProjectGrid/ProjectGrid";
+import { useMemo, useState } from "react";
+import CountElement from "./countElement/CountElement";
 import { RootState } from "../redux/store";
-import { ColDef } from "ag-grid-community";
-import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function ProjectGrid() {
-  const projectTable = useSelector(
+  const [showAlert, setShowAlert] = useState(true);
+  const ProjectTableData = useSelector(
     (state: RootState) => state.projectTable.projects
   );
-  const rowDef = projectTable.map((project) => {
-    return {
-      Id: project.id,
-      Name: project.projectName,
-      Description: project.projectDescription,
-      Type: project.projectType,
-      Size: project.projectSize,
-      Client: project.client,
-      Status: project.projectStatus,
-      Country: project.projectLocation.country,
-      City: project.projectLocation.city,
-      StartDate: project.startDate,
-      EndDate: project.endDate,
-      Email: project.email,
-      "Alternative-Email": project.alternativeEmail,
-      "Contact-No": project.contactNo,
-      "Emergency-Contact-No": project.emergencyContactNo,
-    };
-  });
-  const [columnDef] = useState<ColDef[]>([
-    { field: "Id", sortable: true, filter: true },
-    { field: "Name", sortable: true, filter: true },
-    { field: "Description", sortable: true, filter: true },
-    { field: "Type", sortable: true, filter: true },
-    { field: "Size", sortable: true, filter: true },
-    { field: "Client", sortable: true, filter: true },
-    { field: "Status", sortable: true, filter: true },
-    { field: "Country", sortable: true, filter: true },
-    { field: "City", sortable: true, filter: true },
-    { field: "StartDate", sortable: true, filter: true },
-    { field: "EndDate", sortable: true, filter: true },
-    { field: "Email", sortable: true, filter: true },
-    { field: "Alternative-Email", sortable: true, filter: true },
-    { field: "Contact-No", sortable: true, filter: true },
-    { field: "Emergency-Contact-No", sortable: true, filter: true },
-  ]);
-  const [rowData] = useState(rowDef.reverse());
-  const gridRef = useRef<AgGridReact>(null);
-  const pageRef = useRef<HTMLSelectElement>(null);
+  const totalProjectCount = useMemo(() => {
+    return ProjectTableData.length;
+  }, [ProjectTableData]);
+  const newProjectCount = useMemo(() => {
+    return ProjectTableData.filter((project) => project.projectStatus === "new")
+      .length;
+  }, [ProjectTableData]);
+  const inProgressProjectCount = useMemo(() => {
+    return ProjectTableData.filter(
+      (project) => project.projectStatus === "ongoing"
+    ).length;
+  }, [ProjectTableData]);
+  const completedProjectCount = useMemo(() => {
+    return ProjectTableData.filter(
+      (project) => project.projectStatus === "completed"
+    ).length;
+  }, [ProjectTableData]);
+  const cancelledProjectTableCount = useMemo(() => {
+    return ProjectTableData.filter(
+      (project) => project.projectStatus === "cancelled"
+    ).length;
+  }, [ProjectTableData]);
 
   return (
-    <main className="max-w-screen min-h-screen">
-      <div id="myGrid" className="ag-theme-material  h-[70vh] w-[95vw] my-8 ">
-        <label
-          htmlFor="pagezsize"
-          className="flex gap-2 items-center text-base m-2"
-        >
-          <span>items per page: </span>
-          <select
-            name="pagesize"
-            id="pagesize"
-            ref={pageRef}
-            onChange={() =>
-              gridRef.current!.api.paginationSetPageSize(
-                Number(pageRef.current!.value)
-              )
-            }
+    <main className="max-w-full min-h-screen mb-8">
+      <h1 className="text-3xl text-center my-3">Project Management</h1>
+      <h2 className="text-2xl  my-3 underline underline-offset-4">
+        Project Data
+      </h2>
+      {showAlert && (
+        <div className="bg-red-300 px-3 py-2 flex gap-2 my-3 justify-between ">
+          <p>This is best viewed in a desktop . Minimum width of 1024px</p>
+          <button
+            aria-label="close alert button"
+            onClick={() => setShowAlert(false)}
           >
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
-          </select>
-        </label>
-        <AgGridReact
-          columnDefs={columnDef}
-          rowData={rowData}
-          animateRows
-          rowSelection="single"
-          pagination
-          paginationPageSize={25}
-          ref={gridRef}
-          className="bg-blue-500"
-          getRowId={(params) => params.data.Id}
+            x
+          </button>
+        </div>
+      )}
+      <section className="flex flex-wrap justify-evenly mt-5 gap-2">
+        <CountElement
+          title="Total Projects"
+          count={totalProjectCount}
+          bgColor="bg-blue-300"
         />
-      </div>
+        <CountElement
+          title="New"
+          count={newProjectCount}
+          bgColor="bg-yellow-300"
+        />
+        <CountElement
+          title="Completed"
+          count={completedProjectCount}
+          bgColor="bg-green-300"
+        />
+        <CountElement
+          title="Ongoing"
+          count={inProgressProjectCount}
+          bgColor="bg-violet-300"
+        />
+        <CountElement
+          title="Cancelled"
+          count={cancelledProjectTableCount}
+          bgColor="bg-red-300"
+        />
+      </section>
+      <Link
+        to="/charts"
+        className="my-5 block underline underline-offset-4 border-2 p-1 pl-3 hover:no-underline border-transparent  hover:border-black max-w-[250px] hover:bg-blue-500 hover:text-white "
+      >
+        View More Graphical Insights
+      </Link>
+      <ProjectGridTable />
     </main>
   );
 }

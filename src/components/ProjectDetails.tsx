@@ -15,7 +15,9 @@ export default function ProjectDetails() {
   const projectDetails = useSelector(
     (state: RootState) => state.projectDetails.projectDetailsData
   );
-
+  const projectTableData = useSelector(
+    (state: RootState) => state.projectTable.projects
+  );
   const {
     projectName,
     projectDescription,
@@ -49,7 +51,7 @@ export default function ProjectDetails() {
     } else {
       const finalProjectDetails: projectTableRowProps = {
         ...projectDetails,
-        id: Date.now(),
+        id: projectTableData.length + 1,
       };
       dispatch(submitProjectTableDetails(finalProjectDetails));
       resetFormData();

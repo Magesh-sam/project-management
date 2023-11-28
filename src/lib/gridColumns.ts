@@ -1,8 +1,5 @@
 export const gridColumns = [
   {
-    field: "id",
-  },
-  {
     field: "Name",
   },
   {

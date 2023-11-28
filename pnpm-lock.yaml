@@ -17,6 +17,9 @@ dependencies:
   ag-grid-react:
     specifier: ^30.2.1
     version: 30.2.1(ag-grid-community@30.2.1)(react-dom@18.2.0)(react@18.2.0)
+  clsx:
+    specifier: ^2.0.0
+    version: 2.0.0
   firebase:
     specifier: ^10.6.0
     version: 10.6.0
@@ -44,6 +47,9 @@ dependencies:
   redux-persist:
     specifier: ^6.0.0
     version: 6.0.0(react@18.2.0)(redux@4.2.1)
+  tailwind-merge:
+    specifier: ^2.0.0
+    version: 2.0.0
 
 devDependencies:
   '@hookform/devtools':
@@ -1854,6 +1860,11 @@ packages:
       wrap-ansi: 7.0.0
     dev: false
 
+  /clsx@2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
+    engines: {node: '>=6'}
+    dev: false
+
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
     dependencies:
@@ -3188,6 +3199,12 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /tailwind-merge@2.0.0:
+    resolution: {integrity: sha512-WO8qghn9yhsldLSg80au+3/gY9E4hFxIvQ3qOmlpXnqpDKoMruKfi/56BbbMg6fHTQJ9QD3cc79PoWqlaQE4rw==}
+    dependencies:
+      '@babel/runtime': 7.23.4
+    dev: false
 
   /tailwindcss@3.3.5:
     resolution: {integrity: sha512-5SEZU4J7pxZgSkv7FP1zY8i2TIAOooNZ1e/OGtxIEv6GltpoiXUqWvLy89+a10qYTB1N5Ifkuw9lqQkN9sscvA==}
