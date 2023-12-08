@@ -2,11 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { projectTableRowProps } from "../../lib/types";
 import { projectTableInitialData } from "../../lib/mock_data";
 const initialState = {
-  projects: projectTableInitialData as projectTableRowProps[],
+  projects: [...projectTableInitialData] as projectTableRowProps[],
 };
 
-const projectDetailsSlice = createSlice({
-  name: "projectDetails",
+const projectTableSlice = createSlice({
+  name: "projectTable",
   initialState,
   reducers: {
     submitProjectTableDetails: (
@@ -15,8 +15,35 @@ const projectDetailsSlice = createSlice({
     ) => {
       state.projects.push(action.payload);
     },
+    updateProjectTableDetails: (
+      state,
+      action: PayloadAction<projectTableRowProps>
+    ) => {
+      const project = state.projects.find((p) => p.id === action.payload.id);
+      console.log(project);
+      state.projects = state.projects.map((project) => {
+        if (project.id === action.payload.id) {
+          console.log(action.payload, "received");
+
+          return {
+            ...project,
+            ...action.payload,
+          };
+        }
+        return project;
+      });
+    },
+    deleteProject: (state, action: PayloadAction<number>) => {
+      state.projects = state.projects.filter(
+        (project) => project.id !== action.payload
+      );
+    },
   },
 });
 
-export const { submitProjectTableDetails } = projectDetailsSlice.actions;
-export default projectDetailsSlice.reducer;
+export const {
+  submitProjectTableDetails,
+  updateProjectTableDetails,
+  deleteProject,
+} = projectTableSlice.actions;
+export default projectTableSlice.reducer;

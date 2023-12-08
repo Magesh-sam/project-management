@@ -9,7 +9,7 @@ const persistConfig = {
 };
 
 const ignoreRegisterMiddleware =
-  (store: any) => (next: any) => (action: any) => {
+  (_store: any) => (next: any) => (action: any) => {
     if (action.type !== "REGISTER") {
       return next(action);
     }

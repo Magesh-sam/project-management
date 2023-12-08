@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { submitSecondaryProjectDetails } from "../redux/features/secondaryProjectDetails";
-import { secondaryProjectDetailsProps } from "../lib/types";
-import { geoDataMap } from "../lib/geoData";
+import { AppDispatch, RootState } from "../../redux/store";
+import { submitSecondaryProjectDetails } from "../../redux/features/secondaryProjectDetails";
+import { secondaryProjectDetailsProps } from "../../lib/types";
+import { geoDataMap } from "../../lib/geoData";
 
 function SecondaryDetailsForm() {
   const secondaryFormData = useSelector(
     (state: RootState) => state.secondaryProjectDetails.secondaryProjectDetails
   );
+  console.log("data", secondaryFormData);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const secondaryForm = useForm<secondaryProjectDetailsProps>({
@@ -28,8 +29,8 @@ function SecondaryDetailsForm() {
     }
   };
   const submitForm = (data: secondaryProjectDetailsProps) => {
-    dispatch(submitSecondaryProjectDetails(data));
     navigate("/contactform");
+    dispatch(submitSecondaryProjectDetails(data));
   };
   return (
     <form
@@ -66,6 +67,7 @@ function SecondaryDetailsForm() {
         <span className="block mb-2">Project Location</span>
         <select
           autoComplete="on"
+          defaultValue={secondaryFormData.projectLocation.country}
           className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md"
           placeholder="Select Country"
           {...register("projectLocation.country", {
@@ -84,6 +86,7 @@ function SecondaryDetailsForm() {
         </select>
         {countryName?.length > 0 && countryName !== undefined && (
           <select
+            defaultValue={secondaryFormData.projectLocation.city}
             className=" w-[300px] sm:w-[450px] md:w-[600px] border-2 border-blue-500 p-3 rounded-md mt-3"
             {...register("projectLocation.city", {
               required: {

@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { submitPrimaryProjectDetails } from "../redux/features/primaryProjectDetails";
-import { primaryProjectDetailsProps } from "../lib/types";
+import { AppDispatch, RootState } from "../../redux/store";
+import { submitPrimaryProjectDetails } from "../../redux/features/primaryProjectDetails";
+import { primaryProjectDetailsProps } from "../../lib/types";
 function PrimaryDetailsForm() {
   const primaryFormData = useSelector(
     (state: RootState) => state.primaryProjectDetails.primaryProjectDetails
@@ -68,7 +68,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Web development"}
+            value={"web development"}
             {...register("projectType", {
               required: {
                 value: true,
@@ -81,7 +81,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Mobile app development"}
+            value={"mobile app development"}
             {...register("projectType", {
               required: {
                 value: true,
@@ -95,7 +95,7 @@ function PrimaryDetailsForm() {
           <input
             id="cloudComputing"
             type="radio"
-            value={"Cloud computing"}
+            value={"cloud computing"}
             {...register("projectType", {
               required: {
                 value: true,
@@ -108,7 +108,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Artificial intelligence"}
+            value={"artificial intelligence"}
             {...register("projectType", {
               required: {
                 value: true,
@@ -117,6 +117,19 @@ function PrimaryDetailsForm() {
             })}
           />
           <span className="ml-2">Artificial Intelligence</span>
+        </label>
+        <label className="flex items-center mb-2">
+          <input
+            type="radio"
+            value={"blockchain"}
+            {...register("projectType", {
+              required: {
+                value: true,
+                message: "Please select the project type!",
+              },
+            })}
+          />
+          <span className="ml-2">Blockchain</span>
         </label>
         {errors.projectType && (
           <p className="text-red-500">{errors.projectType.message}</p>
@@ -127,7 +140,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Small"}
+            value={"small"}
             {...register("projectSize", {
               required: {
                 value: true,
@@ -140,7 +153,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Medium"}
+            value={"medium"}
             {...register("projectSize", {
               required: {
                 value: true,
@@ -153,7 +166,7 @@ function PrimaryDetailsForm() {
         <label className="flex items-center mb-2">
           <input
             type="radio"
-            value={"Large"}
+            value={"large"}
             {...register("projectSize", {
               required: {
                 value: true,

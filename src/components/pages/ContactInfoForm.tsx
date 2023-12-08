@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { submitContactInfo } from "../redux/features/contactInfo";
-import { contactInfoProps, projectDetailsProps } from "../lib/types";
+import { AppDispatch, RootState } from "../../redux/store";
+import { submitContactInfo } from "../../redux/features/contactInfo";
+import { contactInfoProps, projectDetailsProps } from "../../lib/types";
 import { useNavigate } from "react-router-dom";
 
-import { submitProjectDetails } from "../redux/features/projectDetails";
+import { submitProjectDetails } from "../../redux/features/projectDetails";
 
 function ContactInfoForm() {
   const primaryFormData = useSelector(
@@ -17,7 +17,25 @@ function ContactInfoForm() {
   const contactFormData = useSelector(
     (state: RootState) => state.contactInfo.contactInfo
   );
-
+  const ProjectDetailsData = useSelector(
+    (state: RootState) => state.projectDetails.projectDetailsData
+  );
+  const {
+    projectName,
+    projectDescription,
+    projectType,
+    projectSize,
+    client,
+    projectStatus,
+    projectLocation,
+    startDate,
+    endDate,
+    email,
+    alternativeEmail,
+    contactNo,
+    emergencyContactNo,
+  } = ProjectDetailsData;
+  console.log("projectDetailsData", ProjectDetailsData);
   const dispatch = useDispatch<AppDispatch>();
   const contactForm = useForm<contactInfoProps>({
     defaultValues: {
@@ -37,8 +55,28 @@ function ContactInfoForm() {
       ...data,
     };
     console.log(finalFormData);
+    console.log("projectDetailsData", ProjectDetailsData);
     dispatch(submitProjectDetails(finalFormData));
-    navigate("/projectdetails");
+    if (
+      projectDescription === "" ||
+      projectType === "" ||
+      projectSize === "" ||
+      projectName === "" ||
+      client === "" ||
+      projectStatus === "" ||
+      projectLocation.country === "" ||
+      projectLocation.city === "" ||
+      startDate === "" ||
+      endDate === "" ||
+      email === "" ||
+      alternativeEmail === "" ||
+      contactNo === "" ||
+      emergencyContactNo === ""
+    ) {
+      navigate("/projectdetails");
+    } else {
+      navigate("/updateprojectdetails");
+    }
   };
   return (
     <form

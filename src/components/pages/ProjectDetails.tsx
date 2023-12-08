@@ -1,14 +1,14 @@
 // ProjectPreview.js
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../../redux/store";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { resetContactInfo } from "../redux/features/contactInfo";
-import { resetPrimaryDetails } from "../redux/features/primaryProjectDetails";
-import { resetSecondaryDetails } from "../redux/features/secondaryProjectDetails";
-import { resetProjectDetails } from "../redux/features/projectDetails";
-import { submitProjectTableDetails } from "../redux/features/projectTable";
-import { projectTableRowProps } from "../lib/types";
+import { resetContactInfo } from "../../redux/features/contactInfo";
+import { resetPrimaryDetails } from "../../redux/features/primaryProjectDetails";
+import { resetSecondaryDetails } from "../../redux/features/secondaryProjectDetails";
+import { resetProjectDetails } from "../../redux/features/projectDetails";
+import { submitProjectTableDetails } from "../../redux/features/projectTable";
+import { projectTableRowProps } from "../../lib/types";
 export default function ProjectDetails() {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -59,6 +59,7 @@ export default function ProjectDetails() {
       navigate("/");
     }
   };
+
   if (
     projectName === "" ||
     projectDescription === "" ||
@@ -99,7 +100,7 @@ export default function ProjectDetails() {
             </h2>
             <Link
               className="text-blue-700 ml-3 hover:underline underline-offset-4"
-              to="/"
+              to="/primaryform"
             >
               Edit ✍️
             </Link>
@@ -208,6 +209,7 @@ export default function ProjectDetails() {
           >
             Previous
           </button>
+
           <button
             disabled={!isAgreementChecked}
             className="bg-blue-500 text-white p-3 rounded-md"

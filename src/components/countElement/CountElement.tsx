@@ -13,7 +13,7 @@ function CountElement({
 }: CounterElementProps) {
   return (
     <div
-      className={`flex flex-col gap-2 w-[180px] p-3 border-black border ${bgColor} ${textColor}`}
+      className={`flex flex-col gap-2 w-[180px] p-3 border-black border shadow-lg ${bgColor} ${textColor}`}
     >
       <h3>{title}</h3>
       <p>{count}</p>

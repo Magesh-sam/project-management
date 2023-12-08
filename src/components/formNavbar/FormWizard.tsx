@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function FormWizard() {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <div className="flex p-3 border-2 border-blue-500  w-full items-center justify-evenly ">
       <Link to="/primaryform" className="flex gap-1 items-center group ">
