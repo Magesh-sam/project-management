@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { Box } from "@mui/material";
 import { deleteProject } from "../../redux/features/projectTable";
 import { useNavigate } from "react-router-dom";
+import { projectTableRowProps } from "../../lib/types";
 
 function ProjectTable() {
   const projectTable = useSelector(
@@ -104,7 +105,7 @@ function ProjectTable() {
       },
     },
   ];
-  const rowDef = projectTable.map((project) => {
+  const rowDef = projectTable.map((project: projectTableRowProps) => {
     return {
       Id: project.id,
       Name: project.projectName,

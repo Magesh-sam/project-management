@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { RootState } from "../../redux/store";
 import { useMemo, memo } from "react";
+import { projectTableRowProps } from "../../lib/types";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -50,25 +51,30 @@ export default memo(function ProjectCountByStatusPieChart() {
     (state: RootState) => state.projectTable.projects
   );
   const newProjectCount = useMemo(
-    () => FullProjectData.filter((project) => project.projectStatus === "new"),
+    () =>
+      FullProjectData.filter(
+        (project: projectTableRowProps) => project.projectStatus === "new"
+      ),
     [FullProjectData]
   );
   const onProgressProjectCount = useMemo(
     () =>
-      FullProjectData.filter((project) => project.projectStatus === "ongoing"),
+      FullProjectData.filter(
+        (project: projectTableRowProps) => project.projectStatus === "ongoing"
+      ),
     [FullProjectData]
   );
   const completedProjectCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectStatus === "completed"
+        (project: projectTableRowProps) => project.projectStatus === "completed"
       ),
     [FullProjectData]
   );
   const cancelledProjectCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectStatus === "cancelled"
+        (project: projectTableRowProps) => project.projectStatus === "cancelled"
       ),
     [FullProjectData]
   );

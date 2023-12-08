@@ -2,6 +2,7 @@ import { useMemo, memo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import CountElement from "./CountElement";
+import { projectTableRowProps } from "../../lib/types";
 
 function CounterElementWrapper() {
   const ProjectTableData = useSelector(
@@ -11,17 +12,18 @@ function CounterElementWrapper() {
     return ProjectTableData.length;
   }, [ProjectTableData]);
   const newProjectCount = useMemo(() => {
-    return ProjectTableData.filter((project) => project.projectStatus === "new")
-      .length;
+    return ProjectTableData.filter(
+      (project: projectTableRowProps) => project.projectStatus === "new"
+    ).length;
   }, [ProjectTableData]);
   const inProgressProjectCount = useMemo(() => {
     return ProjectTableData.filter(
-      (project) => project.projectStatus === "ongoing"
+      (project: projectTableRowProps) => project.projectStatus === "ongoing"
     ).length;
   }, [ProjectTableData]);
   const completedProjectCount = useMemo(() => {
     return ProjectTableData.filter(
-      (project) => project.projectStatus === "completed"
+      (project: projectTableRowProps) => project.projectStatus === "completed"
     ).length;
   }, [ProjectTableData]);
   const TotalCountComponent = memo(() => (

@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { RootState } from "../../redux/store";
 import { useMemo, memo } from "react";
+import { projectTableRowProps } from "../../lib/types";
 
 const COLORS = [
   "#0088FE",
@@ -59,42 +60,47 @@ export default memo(function ProjectCountByTypePieChart() {
   const webDevelopmentCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "web development"
+        (project: projectTableRowProps) =>
+          project.projectType === "web development"
       ),
     [FullProjectData]
   );
   const mobileAppDevelopmentCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "mobile app development"
+        (project: projectTableRowProps) =>
+          project.projectType === "mobile app development"
       ),
     [FullProjectData]
   );
   const artificialIntelligenceCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "artificial intelligence"
+        (project: projectTableRowProps) =>
+          project.projectType === "artificial intelligence"
       ),
     [FullProjectData]
   );
   const cyberSecurityCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "cyber security"
+        (project: projectTableRowProps) =>
+          project.projectType === "cyber security"
       ),
     [FullProjectData]
   );
   const blockchainCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "block chain"
+        (project: projectTableRowProps) => project.projectType === "block chain"
       ),
     [FullProjectData]
   );
   const cloudComputingCount = useMemo(
     () =>
       FullProjectData.filter(
-        (project) => project.projectType === "cloud computing"
+        (project: projectTableRowProps) =>
+          project.projectType === "cloud computing"
       ),
     [FullProjectData]
   );

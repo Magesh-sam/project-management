@@ -35,7 +35,6 @@ function ContactInfoForm() {
     contactNo,
     emergencyContactNo,
   } = ProjectDetailsData;
-  console.log("projectDetailsData", ProjectDetailsData);
   const dispatch = useDispatch<AppDispatch>();
   const contactForm = useForm<contactInfoProps>({
     defaultValues: {
@@ -54,8 +53,7 @@ function ContactInfoForm() {
       ...secondaryFormData,
       ...data,
     };
-    console.log(finalFormData);
-    console.log("projectDetailsData", ProjectDetailsData);
+    
     dispatch(submitProjectDetails(finalFormData));
     if (
       projectDescription === "" ||

@@ -8,16 +8,19 @@ const persistConfig = {
   storage,
 };
 
-const ignoreRegisterMiddleware =
-  (_store: any) => (next: any) => (action: any) => {
-    if (action.type !== "REGISTER") {
-      return next(action);
-    }
-  };
+// const ignoreRegisterMiddleware =
+//   (_store: any) => (next: any) => (action: any) => {
+//     if (action.type !== "REGISTER") {
+//       return next(action);
+//     }
+//   };
 
 export const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
-  middleware: [ignoreRegisterMiddleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persister = persistStore(store);

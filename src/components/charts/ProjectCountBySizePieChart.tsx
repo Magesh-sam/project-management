@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { RootState } from "../../redux/store";
 import { memo, useMemo } from "react";
+import { projectTableRowProps } from "../../lib/types";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
@@ -45,20 +46,29 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
-export default memo( function ProjectCountBySizePieChart() {
+export default memo(function ProjectCountBySizePieChart() {
   const FullProjectData = useSelector(
     (state: RootState) => state.projectTable.projects
   );
   const smallProjectCount = useMemo(
-    () => FullProjectData.filter((project) => project.projectSize === "small"),
+    () =>
+      FullProjectData.filter(
+        (project: projectTableRowProps) => project.projectSize === "small"
+      ),
     [FullProjectData]
   );
   const mediumProjectCount = useMemo(
-    () => FullProjectData.filter((project) => project.projectSize === "medium"),
+    () =>
+      FullProjectData.filter(
+        (project: projectTableRowProps) => project.projectSize === "medium"
+      ),
     [FullProjectData]
   );
   const largeProjectCount = useMemo(
-    () => FullProjectData.filter((project) => project.projectSize === "large"),
+    () =>
+      FullProjectData.filter(
+        (project: projectTableRowProps) => project.projectSize === "large"
+      ),
     [FullProjectData]
   );
 
@@ -98,5 +108,4 @@ export default memo( function ProjectCountBySizePieChart() {
       </ResponsiveContainer>
     </div>
   );
-}
-)
+});

@@ -25,29 +25,41 @@ function Charts() {
     <main className="flex flex-col gap-5 w-screen min-h-screen   ">
       <h1 className="text-3xl my-3 text-center ">Project Insights</h1>
       <section className="flex justify-around gap-12 flex-wrap mb-5">
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <CountryByStatusBarChart />
         </Suspense>
 
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <ProjectCountByStatusPieChart />
         </Suspense>
       </section>
       <section className="flex justify-around gap-12 flex-wrap mb-5">
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <CountryBySizeBarChart />
         </Suspense>
 
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <ProjectCountBySizePieChart />
         </Suspense>
       </section>
       <section className="flex justify-around gap-12 flex-wrap mb-5">
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <CountByTechBarChart />
         </Suspense>
 
-        <Suspense fallback={<Skeleton className="w-[500px] h-[500px]" />}>
+        <Suspense
+          fallback={<Skeleton className="min-w-[500px] min-h-[500px]" />}
+        >
           <ProjectCountByTypePieChart />
         </Suspense>
       </section>

@@ -10,7 +10,6 @@ function SecondaryDetailsForm() {
   const secondaryFormData = useSelector(
     (state: RootState) => state.secondaryProjectDetails.secondaryProjectDetails
   );
-  console.log("data", secondaryFormData);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const secondaryForm = useForm<secondaryProjectDetailsProps>({

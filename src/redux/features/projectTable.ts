@@ -19,12 +19,8 @@ const projectTableSlice = createSlice({
       state,
       action: PayloadAction<projectTableRowProps>
     ) => {
-      const project = state.projects.find((p) => p.id === action.payload.id);
-      console.log(project);
       state.projects = state.projects.map((project) => {
         if (project.id === action.payload.id) {
-          console.log(action.payload, "received");
-
           return {
             ...project,
             ...action.payload,

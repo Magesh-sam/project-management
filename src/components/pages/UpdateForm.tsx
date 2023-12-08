@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../redux/store";
 import { geoDataMap } from "../../lib/geoData";
-import { projectDetailsProps } from "../../lib/types";
+import { projectDetailsProps, projectTableRowProps } from "../../lib/types";
 import { updateProjectTableDetails } from "../../redux/features/projectTable";
 import { useEffect } from "react";
 
 const UpdateForm = () => {
   const location = useLocation();
-  console.log("location from hook", location);
   const navigate = useNavigate();
   useEffect(() => {
     if (location.state === null || location.state === undefined) {
-      console.log("navigate from useEffect", location.state);
       navigate("/");
       return;
     }
@@ -25,7 +23,7 @@ const UpdateForm = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const projectDefaultValue = projectData.find(
-    (project) => project.id === state.id
+    (project: projectTableRowProps) => project.id === state.id
   );
   const defaultValues = {
     projectName: projectDefaultValue?.projectName,
@@ -57,7 +55,6 @@ const UpdateForm = () => {
     watch("projectLocation.city") || defaultValues.projectLocation.city;
 
   const onSubmit = (data: projectDetailsProps) => {
-    console.log({ ...data, id: state.id });
     dispatch(updateProjectTableDetails({ ...data, id: state.id }));
     navigate("/");
   };
